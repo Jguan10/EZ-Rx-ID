@@ -1,3 +1,4 @@
 *.csv
 .venv
-*.bin
+*.idx
+my_vector_store
