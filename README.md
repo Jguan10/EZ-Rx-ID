@@ -1,6 +1,6 @@
 # EZ-Rx-ID 💊
 
-## Design Overview
+## Design Overview 💻
 
 
 ## Features ✨
