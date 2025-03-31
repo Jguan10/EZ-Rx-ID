@@ -11,4 +11,5 @@
 - 🧫 BioGPT as an LLM agent, called on when context is insufficient (WIP)
 
 ## How to Run 🚀
-- 
+
+## Future Steps 🔧
