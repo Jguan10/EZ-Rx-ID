@@ -1,5 +1,5 @@
 # EZ-Rx-ID 💊
-
+!(logo)[https://github.com/Jguan10/EZ-Rx-ID/blob/main/display_images/ChatGPT%20Image%20Mar%2031%2C%202025%2C%2010_08_54%20PM.png]
 ## Design Overview 💻
 
 
