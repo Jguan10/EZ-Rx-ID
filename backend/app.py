@@ -1,6 +1,6 @@
 import json
 from flask import Flask, request, jsonify
-from flask_cors import CORS  
+from flask_cors import CORS   # type: ignore
 import torch
 import torchvision.models as models
 import torchvision.transforms as transforms
@@ -20,7 +20,7 @@ model = models.resnet18(weights=None)
 model.fc = torch.nn.Linear(model.fc.in_features, num_classes)
 
 # Load trained model weights
-model.load_state_dict(torch.load("model_epoch_7.pth", map_location=torch.device("cpu")))
+model.load_state_dict(torch.load("7th_epoch_500p.pth", map_location=torch.device("cpu")))
 model.eval()
 
 # Define image preprocessing
@@ -41,13 +41,31 @@ def predict():
 
     with torch.no_grad():
         outputs = model(image)
-        _, predicted = torch.max(outputs, 1)
-        predicted_class = int(predicted.item())
+        probabilities = torch.nn.functional.softmax(outputs, dim=1)  # Convert logits to probabilities
 
-    # Convert class index to pill name
-    pill_name = class_mapping.get(str(predicted_class), "Unknown Pill")
+        # Log the raw probabilities to ensure they're valid
+        print("Raw Probabilities: ", probabilities)
 
-    return jsonify({"prediction": pill_name})
+        top3_probs, top3_indices = torch.topk(probabilities, 3)
+
+    predictions = []
+    for i in range(3):
+        predicted_class = int(top3_indices[0][i].item())
+        probability = float(top3_probs[0][i].item())
+        
+        # Ensure the probability is not NaN
+        if probability != probability:  # NaN check
+            probability = 0.0
+
+        pill_name = class_mapping.get(str(predicted_class), "Unknown Pill")
+        
+        # Append prediction with formatted confidence as percentage
+        predictions.append({
+            "pill_name": pill_name,
+            "probability": f"{(probability * 100):.2f}%"  # Format as percentage with 2 decimals
+        })
+
+    return jsonify({"predictions": predictions})
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=5000, debug=True)
