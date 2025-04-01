@@ -22,9 +22,14 @@ Gitbook contains more in-depth view of the project and more detailed explanation
 
 ### How to Run Backend
 - Install packages in requirements.txt
-- Run app.py, contact doug for database keys
+- Run app.py
+- Contact doug for database keys
 
 ### How to Run Frontend
+- Clone doug's repository found [here](https://github.com/DouglasRollman/frontend)
+- Install dependencies with npm install
+- Run with npm start
+- Contact doug for database keys
 
 ### How to Run RAG
 - Get FAISS index (linked in gitbook)
