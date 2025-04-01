@@ -1,0 +1,13 @@
+{
+	"folders": [
+		{
+			"name": "EZ-Rx-ID",
+			"path": "."
+		},
+		{
+			"name": "rximage",
+			"path": "../../rximage"
+		}
+	],
+	"settings": {}
+}

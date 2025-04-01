@@ -1,5 +1,8 @@
-image/
+rximage/
 augmented.csv
 rximage_dataV3.csv
 rximage_dataV2.csv
 rximage_data.csv
+
+backend/dataset
+
