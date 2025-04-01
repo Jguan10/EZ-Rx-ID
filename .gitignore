@@ -1,11 +1,45 @@
+# Ignore dataset & CSV files
 *.csv
-.venv
+augmented.csv
+rximage_data*.csv
+
+# Ignore Python virtual environments and cache
+.venv/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Ignore binary, index, and machine learning data files
 *.bin
 *.idx
 my_vector_store
 rximage/
-augmented.csv
-rximage_dataV3.csv
-rximage_dataV2.csv
-rximage_data.csv
 backend/dataset
+
+# Ignore Flask logs and instance directory
+flask.log
+instance/
+
+# Ignore dependencies
+node_modules/
+frontend/node_modules
+
+# Ignore production build files
+frontend/build
+
+# Ignore package manager logs
+frontend/npm-debug.log*
+frontend/yarn-debug.log*
+frontend/yarn-error.log*
+
+# Ignore IDE and system files
+frontend/.DS_Store
+
+# Ignore all environment files for security
+.env
+.env.*
+frontend/.env.local
+frontend/.env.development.local
+frontend/.env.test.local
+frontend/.env.production.local
