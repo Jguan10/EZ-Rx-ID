@@ -1,5 +1,0 @@
-pandas==2.2.3
-numpy==1.26.4
-torch==2.6.0
-langchain==0.3.19
-faiss-cpu==1.10.0
