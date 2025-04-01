@@ -16,7 +16,3 @@
 - 🧫 BioGPT as an LLM agent, called on when context is insufficient (WIP)
 - 🔬 XGBoost classification model boasting 92% precision and 88% accuracy
 
-## How to Run 🚀
-
-## Future Steps 🔧
-
