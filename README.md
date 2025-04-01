@@ -1,8 +1,12 @@
 # EZ-Rx-ID 💊
 ![logo](https://github.com/Jguan10/EZ-Rx-ID/blob/main/display_images/ChatGPT%20Image%20Mar%2031%2C%202025%2C%2010_08_54%20PM.png)
 
-## Design Overview 💻
+## [Gitbook](https://jasons-organization-58.gitbook.io/rx_id)📖
 
+
+## Design Overview 💻
+![project_design](https://github.com/Jguan10/EZ-Rx-ID/blob/main/display_images/Project_Design.PNG)
+![rag_arch](https://github.com/Jguan10/EZ-Rx-ID/blob/main/display_images/RAG_System_Design.PNG)
 
 ## Features ✨
 - 🥼 RAG model summarizing FDA medical data, including medicine usage, side effects, and clinical trials
