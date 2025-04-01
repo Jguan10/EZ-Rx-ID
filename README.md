@@ -1,6 +1,7 @@
 # EZ-Rx-ID 💊
 ## Gitbook📖
 ### Click [Here](https://jasons-organization-58.gitbook.io/rx_id)
+Gitbook contains more in-depth view of the project and more detailed explanations
 
 ## Design Overview 💻
 ![project_design](https://github.com/Jguan10/EZ-Rx-ID/blob/main/display_images/Project_Design.PNG)
@@ -15,6 +16,39 @@
 - 🔬 XGBoost classification model boasting 92% precision and 88% accuracy
 
 ## How to Run 🚀
+### How to Run XGBoost
+- Use df_rximages_final and xgboost.ipynb
+- Install xgboost and scikitlearn
+
+### How to Run Backend
+- Install packages in requirements.txt
+- Run app.py
+- Contact doug for database keys
+
+### How to Run Frontend
+- Clone doug's repository found [here](https://github.com/DouglasRollman/frontend)
+- Install dependencies with npm install
+- Run with npm start
+- Contact doug for database keys
+
+### How to Run RAG
+- Get FAISS index (linked in gitbook)
+- Install required packages
+- Run code and function
 
 ## Future Steps 🔧
+### Rag Development
+- Adding other tools like BioGPT
+- Restructuring vectorDB
+- Further transforming of Data
+
+### Computer Vision Development
+- Ensemble strategy
+- Model fine tuning
+- Evaluate model performance
+
+### Frontend Development
+- Improved design (UI/UX)
+- Explore more cloud options
+- Connecting backend to frontend
 
