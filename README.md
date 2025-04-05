@@ -38,7 +38,7 @@ Gitbook contains more in-depth view of the project and more detailed explanation
 
 ## Future Steps 🔧
 ### Rag Development
-- Adding other tools like BioGPT
+- Adding other tools like BioGPT, an LLM to evaluate responses
 - Restructuring vectorDB
 - Further transforming of Data
 
