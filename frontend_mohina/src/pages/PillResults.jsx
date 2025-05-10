@@ -14,37 +14,35 @@ const PillResults = () => {
   const [pillResults, setPillResults] = useState([]);
 
   useEffect(() => {
-    setPillResults([
-      {
-        pill_name: 'Fentanyl 0.2 MG Oral Lozenge',
-        confidence: 0.94,
-        color: 'White',
-        shape: 'BULLET',
-        imprint: 'ACTIQ;200',
-        dosage: '0.2 MG',
-        rxnavImageFileName: 'pill1.jpg'
-      },
-      {
-        pill_name: 'Lipitor 20 mg',
-        confidence: 0.89,
-        color: 'White',
-        shape: 'OVAL',
-        imprint: 'PD 155 20',
-        dosage: '20 MG',
-        rxnavImageFileName: 'pill2.jpg'
-      },
-      {
-        pill_name: 'Ibuprofen 200 mg',
-        confidence: 0.83,
-        color: 'Orange',
-        shape: 'ROUND',
-        imprint: 'I2',
-        dosage: '200 MG',
-        rxnavImageFileName: 'pill3.jpg'
+    const fetchPills = async () => {
+      try {
+        let query = supabase.from('pill_data').select('*');
+  
+        if (selectedShape) query = query.eq('shape', selectedShape);
+        if (selectedColor) query = query.eq('color', selectedColor);
+        if (imprint) query = query.ilike('imprint', `%${imprint}%`);
+  
+        const { data, error } = await query;
+        if (error) throw error;
+  
+        setPillResults(data.slice(0, 3)); // 🔥 Top 3 results
+      } catch (error) {
+        console.error('Error fetching pills:', error.message);
       }
-    ])
-    
-}, []);
+    };
+  
+    fetchPills();
+  }, [selectedShape, selectedColor, imprint]);
+
+  
+  useEffect(() => {
+    const stored = localStorage.getItem("image_predictions");
+    if (stored) {
+      const parsed = JSON.parse(stored);
+      setPillResults(parsed.slice(0, 3)); // Top 3 only
+    }
+  }, []);
+  
 
 
  {/* useEffect(() => {
