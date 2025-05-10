@@ -14,40 +14,42 @@ const Header = () => {
     }
   };
 
-  const handleHowItWorksClick = () => {
-    if (location.pathname !== "/") {
-      navigate("/", { state: { scrollTo: "how-it-works" } });
-    } else {
-      const section = document.getElementById("how-it-works");
-      if (section) {
-        section.scrollIntoView({ behavior: "smooth" });
-      }
-    }
-  };
-
   return (
-    <header className="bg-white shadow-md py-4 px-6 flex items-center justify-between relative z-50 sticky top-0">
-      
-      {/* Left: Logo */}
+    <header className="bg-white shadow-md py-4 px-6 flex justify-between items-center sticky top-0 z-50">
+      {/* Logo and Website Name */}
       <div onClick={handleHomeClick} className="flex items-center space-x-2 cursor-pointer">
         <img src={logo} alt="Logo" className="w-8 h-8" />
         <span className="text-xl font-bold text-gray-800">EZ-Rx-ID</span>
       </div>
 
-      {/* Center: Nav Links */}
-      <div className="absolute left-1/2 transform -translate-x-1/2 flex space-x-6">
+      {/* Navigation Links */}
+      <nav className="flex items-center space-x-6">
         <button onClick={handleHomeClick} className="text-gray-700 hover:text-blue-600 font-medium">
           Home
         </button>
-        <button onClick={handleHowItWorksClick} className="text-gray-700 hover:text-blue-600 font-medium">
+
+        <button
+          onClick={() => {
+            if (location.pathname !== "/") {
+              navigate("/");
+              setTimeout(() => {
+                document.getElementById("how-it-works")?.scrollIntoView({ behavior: "smooth" });
+              }, 100);
+            } else {
+              document.getElementById("how-it-works")?.scrollIntoView({ behavior: "smooth" });
+            }
+          }}
+          className="text-gray-700 hover:text-blue-600 font-medium"
+        >
           How it Works
         </button>
+
         <Link to="/chat" className="text-gray-700 hover:text-blue-600 font-medium">
           AI Chat
         </Link>
-      </div>
+      </nav>
 
-      {/* Right: GitHub Icon */}
+      {/* GitHub Button */}
       <a
         href="https://github.com/Jguan10/EZ-Rx-ID"
         target="_blank"
@@ -65,6 +67,7 @@ const Header = () => {
           </svg>
         </div>
       </a>
+
     </header>
   );
 };

@@ -18,14 +18,19 @@ const Chat = () => {
       setMessages((prev) => [...prev, botMessage]);
     }, 500);
   };
+  
 
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
   }, [messages]);
 
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }, []);
+
   return (
     <div className="px-4 mt-8">
-      <div className="max-w-2xl mx-auto bg-white rounded-2xl shadow-md p-6 h-[calc(100vh-8rem)] flex flex-col">
+      <div className="max-w-2xl mx-auto bg-white rounded-2xl shadow-md p-4 h-[calc(100vh-12rem)] flex flex-col">
         <h2 className="text-2xl font-bold mb-4 flex items-center">
           <span className="text-red-500 mr-2">❓</span> Medication Questions
         </h2>
