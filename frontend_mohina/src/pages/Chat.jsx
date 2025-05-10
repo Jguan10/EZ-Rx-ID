@@ -77,6 +77,17 @@ const Chat = () => {
         </div>
       </div>
 
+      {/* Trusted info section */}
+      <div className="mt-12 text-center">
+          <h3 className="text-3xl font-bold text-gray-800">Trusted Information</h3>
+          <p className="text-lg text-gray-500 mt-1 max-w-2xl mx-auto">
+            Our database of medical information is sourced directly from FDA and verified pharmaceutical databases.
+          </p>
+      </div>
+
+      {/* Separator line */}
+      <hr className="border-t border-gray-300 my-8 w-full max-w-2xl mx-auto" />
+
       <div className="text-center text-xs text-gray-500 mt-2 space-y-1">
         <p>Disclaimer: EZ-Rx-ID is designed to help identify medications but should not replace professional medical advice.</p>
         <p>Always consult a healthcare provider or pharmacist for medical questions.</p>
