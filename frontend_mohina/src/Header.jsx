@@ -15,7 +15,7 @@ const Header = () => {
   };
 
   return (
-    <header className="bg-white shadow-md py-4 px-6 flex justify-between items-center sticky top-0 z-50">
+    <header className="bg-white shadow-md py-4 px-6 flex justify-between items-center sticky top-0 z-50 relative">
       {/* Logo and Website Name */}
       <div onClick={handleHomeClick} className="flex items-center space-x-2 cursor-pointer">
         <img src={logo} alt="Logo" className="w-8 h-8" />
@@ -23,8 +23,9 @@ const Header = () => {
       </div>
 
       {/* Navigation Links */}
-      <nav className="flex items-center space-x-6">
-        <button onClick={handleHomeClick} className="text-gray-700 hover:text-blue-600 font-medium">
+      <nav className="absolute left-1/2 transform -translate-x-1/2 flex space-x-4">
+        <button onClick={handleHomeClick} 
+        className="text-gray-700 hover:text-blue-600 font-medium">
           Home
         </button>
 
@@ -44,9 +45,19 @@ const Header = () => {
           How it Works
         </button>
 
-        <Link to="/chat" className="text-gray-700 hover:text-blue-600 font-medium">
+        <button
+          onClick={() => {
+            if (location.pathname === "/chat") {
+              window.scrollTo({ top: 0, behavior: "smooth" });
+            } else {
+              navigate("/chat");
+            }
+          }}
+          className="text-gray-700 hover:text-blue-600 font-medium"
+        >
           AI Chat
-        </Link>
+        </button>
+
       </nav>
 
       {/* GitHub Button */}

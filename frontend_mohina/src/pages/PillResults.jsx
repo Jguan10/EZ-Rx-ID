@@ -145,7 +145,7 @@ const PillResults = () => {
             {/* Separator line */}
             <hr className="border-t border-gray-300 my-8 w-full max-w-2xl mx-auto" />
 
-            <div className="text-center text-xs text-gray-500 mt-10 space-y-1">
+            <div className="text-center text-sm text-gray-500 mt-10 space-y-1">
               <p>Disclaimer: EZ-Rx-ID is designed to help identify medications but should not replace professional medical advice.</p>
               <p>Always consult a healthcare provider or pharmacist for medical questions.</p>
             </div>

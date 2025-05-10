@@ -78,7 +78,7 @@ const Home = () => {
 
 
         {/* Disclaimer section */}
-        <div className="text-center text-xs text-gray-500 mt-8 space-y-1">
+        <div className="text-center text-sm text-gray-500 mt-8 space-y-1">
           <p>Disclaimer: EZ-Rx-ID is designed to help identify medications but should not replace professional medical advice.</p>
           <p>Always consult a healthcare provider or pharmacist for medical questions.</p>
         </div>

@@ -4,6 +4,7 @@ import Header from "./Header";
 import Home from "./Home";
 import PillResults from "./pages/PillResults";
 import Chat from './pages/Chat';
+import Footer from './Footer';
 
 
 
@@ -19,6 +20,7 @@ function App() {
 
         </Routes>
       </main>
+      <Footer />
     </div>
   );
 }
