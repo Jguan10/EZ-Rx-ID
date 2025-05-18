@@ -2,6 +2,7 @@
 *.csv
 augmented.csv
 rximage_data*.csv
+data/
 
 # Ignore Python virtual environments and cache
 .venv/
