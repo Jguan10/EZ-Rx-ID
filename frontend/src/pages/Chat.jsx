@@ -8,18 +8,42 @@ const Chat = () => {
   const [input, setInput] = useState('');
   const messagesEndRef = useRef(null);
 
-  const handleSend = () => {
-    if (!input.trim()) return;
+  const handleSend = async () => {
+  if (!input.trim()) return;
 
-    const userMessage = { sender: 'user', text: input };
-    setMessages((prev) => [...prev, userMessage]);
-    setInput('');
+  const userMessage = { sender: 'user', text: input };
+  setMessages((prev) => [...prev, userMessage]);
+  setInput('');
 
-    // Simulate API error reply for now
-    const botMessage = { sender: 'bot', text: 'Sorry, something went wrong.' };
-    setTimeout(() => {
-      setMessages((prev) => [...prev, botMessage]);
-    }, 500);
+  try {
+    const response = await fetch("https://5000-01jsfbc1mc3qvsswdep16mgbdv.cloudspaces.litng.ai/generate", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({ query: input })
+    });
+
+    if (!response.ok) {
+      throw new Error("Network response was not ok");
+    }
+
+    const data = await response.json();
+
+    const botMessage = {
+      sender: 'bot',
+      text: data.answer || "Sorry, I couldn't find an answer.",
+    };
+
+    setMessages((prev) => [...prev, botMessage]);
+  } catch (error) {
+    const errorMessage = {
+      sender: 'bot',
+      text: "⚠️ Error: Unable to get response from server.",
+    };
+    setMessages((prev) => [...prev, errorMessage]);
+    console.error("API error:", error);
+    }
   };
   
   const chatContainerRef = useRef(null);
