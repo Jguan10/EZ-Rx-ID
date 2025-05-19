@@ -6,43 +6,43 @@ import { useNavigate } from 'react-router-dom';
 const PillResults = () => {
   const { search } = useLocation();
   const params = new URLSearchParams(search);
-
+  
   const selectedShape = params.get('shape');
   const selectedColor = params.get('color');
   const imprint = params.get('imprint');
-
+  
   const [pillResults, setPillResults] = useState([]);
 
   useEffect(() => {
     const fetchPills = async () => {
       try {
         let query = supabase.from('pill_data').select('*');
-  
-        if (selectedShape) query = query.eq('shape', selectedShape);
-        if (selectedColor) query = query.eq('color', selectedColor);
-        if (imprint) query = query.ilike('imprint', `%${imprint}%`);
-  
+
+        // Apply filters based on the query parameters
+        if (selectedShape) {
+          query = query.eq('shape', selectedShape);
+        }
+        if (selectedColor) {
+          query = query.eq('color', selectedColor);
+        }
+        if (imprint) {
+          query = query.ilike('imprint', `%${imprint}%`); // Case-insensitive match
+        }
+
         const { data, error } = await query;
-        if (error) throw error;
-  
-        setPillResults(data.slice(0, 3)); // 🔥 Top 3 results
+
+        if (error) {
+          throw error;
+        }
+
+        setPillResults(data);
       } catch (error) {
         console.error('Error fetching pills:', error.message);
       }
     };
-  
+
     fetchPills();
   }, [selectedShape, selectedColor, imprint]);
-
-  
-  useEffect(() => {
-    const stored = localStorage.getItem("image_predictions");
-    if (stored) {
-      const parsed = JSON.parse(stored);
-      setPillResults(parsed.slice(0, 3)); // Top 3 only
-    }
-  }, []);
-  
 
 
  {/* useEffect(() => {

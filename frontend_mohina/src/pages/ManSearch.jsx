@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import supabase from '../supabaseClient';
 
 const ManSearch = () => {
   const [color, setColor] = useState('');
@@ -8,6 +9,41 @@ const ManSearch = () => {
   
 
   const navigate = useNavigate();
+
+  useEffect(() => {
+    const fetchShapesAndColors = async () => {
+        try {
+          const { data, error } = await supabase
+            .from('pill_data')
+            .select('shape, color')
+            .not('shape', 'is', null)  // Exclude null values properly
+            .not('color', 'is', null); // Exclude null values properly
+      
+          if (error) throw error;
+      
+          console.log("Raw data from Supabase:", data); // Debugging log
+      
+          // Ensure unique, trimmed, and uppercase values, while filtering out empty strings
+          const uniqueShapes = [...new Set(
+            data.map(item => item.shape?.trim().toUpperCase()).filter(Boolean)
+          )];
+      
+          const uniqueColors = [...new Set(
+            data.map(item => item.color?.trim().toUpperCase()).filter(Boolean)
+          )];
+      
+          console.log("Processed Shapes:", uniqueShapes); // Debugging log
+      
+          setShape(uniqueShapes);
+          setColor(uniqueColors);
+        } catch (error) {
+          console.error('Error fetching shapes and colors:', error.message);
+        }
+      };
+
+    fetchShapesAndColors();
+  }, []);
+
 
   const handleSubmit = (e) => {
     e.preventDefault();
