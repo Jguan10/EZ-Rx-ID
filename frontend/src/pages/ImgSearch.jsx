@@ -24,7 +24,7 @@ const ImgSearch = () => {
     }
 
     const formData = new FormData();
-    formData.append("file", image);
+    formData.append("image", image); // <-- Change key from "file" to "image"
 
     try {
       const response = await fetch("http://127.0.0.1:5000/predict", {
@@ -34,16 +34,15 @@ const ImgSearch = () => {
 
       const data = await response.json();
 
-      const processedPredictions = data.predictions.map(p => ({
-        ...p,
-        probability: parseFloat(p.probability.replace("%", "")) / 100,
-      }));
+      // Since backend probabilities are already floats, no need to parse or remove '%'
+      const processedPredictions = data.predictions;
 
       const pillDetails = await fetchPillDetails(processedPredictions);
       setPredictions(pillDetails);
 
-      //  Navigate to Pill Results page
-      navigate("/pill-results");
+      navigate("/pill-results", {
+        state: { predictions: pillDetails },
+      });
 
     } catch (error) {
       console.error("Error:", error);
@@ -52,7 +51,7 @@ const ImgSearch = () => {
   };
 
   const fetchPillDetails = async (predictions) => {
-    const predictedFilenames = predictions.map(p => `${p.pill_name}.jpg`);
+    const predictedFilenames = predictions.map(p => `${p.label}.jpg`);
 
     const { data, error } = await supabase
       .from("pill_data")
@@ -65,14 +64,14 @@ const ImgSearch = () => {
     }
 
     return predictions.map(prediction => {
-      const pillData = data.find(p => p.rxnavImageFileName === `${prediction.pill_name}.jpg`);
+      const pillData = data.find(p => p.rxnavImageFileName === `${prediction.label}.jpg`);
       const imageUrl = pillData
         ? supabase.storage.from("pills").getPublicUrl(pillData.rxnavImageFileName).data.publicUrl
         : null;
 
       return {
         ...pillData,
-        pill_name: prediction.pill_name,
+        pill_name: prediction.label,
         probability: prediction.probability,
         imageUrl,
       };

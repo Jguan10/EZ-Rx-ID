@@ -3,29 +3,49 @@ import React, { useState } from "react";
 const PillUploader = () => {
   const [image, setImage] = useState(null);
   const [preview, setPreview] = useState(null);
+  const [predictions, setPredictions] = useState([]);
+  const [loading, setLoading] = useState(false);
 
   const handleImageChange = (event) => {
     const file = event.target.files[0];
     if (file) {
       setImage(file);
-      setPreview(URL.createObjectURL(file)); // Create a preview
+      setPreview(URL.createObjectURL(file));
     }
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
-
     if (!image) {
       alert("Please select an image before submitting.");
       return;
     }
 
-    // You can handle image upload to a backend here
-    console.log("Image submitted:", image);
+    const formData = new FormData();
+    formData.append("image", image);
 
-    // Reset state after submission
-    setImage(null);
-    setPreview(null);
+    setLoading(true);
+    setPredictions([]);
+
+    try {
+      const response = await fetch("http://localhost:5000/predict", {
+        method: "POST",
+        body: formData,
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        setPredictions(data.predictions); // fix: setPredictions instead of setPrediction
+      } else {
+        alert(`Error: ${data.error}`);
+      }
+    } catch (error) {
+      console.error("Upload failed:", error);
+      alert("Upload failed. See console for details.");
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -34,45 +54,56 @@ const PillUploader = () => {
       <form onSubmit={handleSubmit} style={styles.form}>
         <input type="file" accept="image/*" onChange={handleImageChange} />
         {preview && <img src={preview} alt="Preview" style={styles.preview} />}
-        <button type="submit" style={styles.button}>Submit</button>
+        <button type="submit" style={styles.button} disabled={loading}>
+          {loading ? "Predicting..." : "Submit"}
+        </button>
       </form>
+
+      {predictions.length > 0 && (
+        <div style={styles.result}>
+          <h3>Top Predictions:</h3>
+          <ul>
+            {predictions.map((pred, idx) => (
+              <li key={idx}>
+                {pred.label} ({(pred.probability * 100).toFixed(1)}%)
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
     </div>
   );
 };
 
 const styles = {
   container: {
-    textAlign: "center",
+    maxWidth: "500px",
+    margin: "0 auto",
     padding: "20px",
-    backgroundColor: "#ff4d4d", // Red background
-    color: "#ffffff", // White text
-    borderRadius: "8px",
-    width: "300px",
-    margin: "auto",
+    textAlign: "center",
   },
   header: {
-    marginBottom: "10px",
+    fontSize: "24px",
+    marginBottom: "20px",
   },
   form: {
     display: "flex",
     flexDirection: "column",
+    gap: "10px",
     alignItems: "center",
   },
   preview: {
+    width: "200px",
+    height: "auto",
     marginTop: "10px",
-    width: "100px",
-    height: "100px",
-    objectFit: "cover",
-    borderRadius: "8px",
   },
   button: {
-    marginTop: "10px",
-    padding: "8px 12px",
-    border: "none",
-    backgroundColor: "#ffffff",
-    color: "#ff4d4d",
-    cursor: "pointer",
-    borderRadius: "5px",
+    padding: "10px 20px",
+    fontSize: "16px",
+  },
+  result: {
+    marginTop: "20px",
+    textAlign: "left",
   },
 };
 
