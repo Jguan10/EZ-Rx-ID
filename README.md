@@ -19,11 +19,19 @@ Gitbook contains more in-depth view of the project and more detailed explanation
 - 🔬 XGBoost classification model boasting 92% precision and 88% accuracy
 
 ## How to Run 🚀
-# 1. Setup
+### 1. Setup
 - Clone the repo
 ```git clone https://github.com/Jguan10/EZ-Rx-ID.git```
 - Then navigate to the folder
 ```cd EZ-Rx-ID```
+
+### 2. Start RAG Flask API
+- Navigate to the Flask API folder
+```cd rag_model```
+- Install requirements
+```pip install -r requirements.txt```
+- Run flask app
+```python flask_rag.py```
 
 
 
