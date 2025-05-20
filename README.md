@@ -4,8 +4,9 @@
 Gitbook contains more in-depth view of the project and more detailed explanations
 
 ## Design Overview 💻
-![project_design](https://github.com/Jguan10/EZ-Rx-ID/blob/main/images/Project_Design.PNG)
-![rag_arch](https://github.com/Jguan10/EZ-Rx-ID/blob/main/images/RAG_System_Design.PNG)
+![project_design](https://github.com/Jguan10/EZ-Rx-ID/blob/main/images/Overall_architecture.PNG)
+![rag_arch](https://github.com/Jguan10/EZ-Rx-ID/blob/main/images/RAG_architecture.PNG)
+![CV_arch](https://github.com/Jguan10/EZ-Rx-ID/blob/main/images/CV_architecture.PNG)
 
 ## Features ✨
 - 🥼 RAG model summarizing FDA medical data, including medicine usage, side effects, and clinical trials
