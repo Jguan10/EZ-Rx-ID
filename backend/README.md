@@ -17,16 +17,16 @@ This is the Flask-based backend for EZ-Rx-ID, a pill identification system that 
   C:\Python312\python.exe app.py
 
 Setup Instructions
-- 1. Clone the repository
+1. Clone the repository
 git clone https://github.com/Jguan10/EZ-Rx-ID.git
 cd EZ-Rx-ID/backend
 
-- 2. Install dependencies
+2. Install dependencies
 Using Python 3.12:
 
 C:\Python312\python.exe -m pip install -r requirements.txt
 
-- 3. Download xgb_model.json
+3. Download xgb_model.json
 Due to GitHub’s 100MB file size limit, the XGBoost model file must be downloaded manually.
 Download it from Google Drive:
 
