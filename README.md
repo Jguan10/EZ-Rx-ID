@@ -30,10 +30,11 @@ Gitbook contains more in-depth view of the project and more detailed explanation
 ```cd rag_model```
 - Install requirements
 ```pip install -r requirements.txt```
+- Download and unzip my_vector_store.zip, its on [Google Drive](https://drive.google.com/file/d/1ntzECW0b9HCMMLO6uH7BohMt7ziI8qy3/view?usp=sharing) due to github file constraints
 - Run flask app
 ```python flask_rag.py```
 - Note that the RAG model requires 15 GB of VRAM
-- You'll need to contact jiaxiong.guan65@myhunter.cuny.edu for API keys
+- You'll need to contact jiaxiong.guan65@myhunter.cuny.edu for API keys 
 
 ### 3. Start Backend API
 - Navigate to the Backend folder
