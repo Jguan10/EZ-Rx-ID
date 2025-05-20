@@ -26,12 +26,32 @@ Gitbook contains more in-depth view of the project and more detailed explanation
 ```cd EZ-Rx-ID```
 
 ### 2. Start RAG Flask API
-- Navigate to the Flask API folder
+- Navigate to the Flask RAG folder
 ```cd rag_model```
 - Install requirements
 ```pip install -r requirements.txt```
 - Run flask app
 ```python flask_rag.py```
+- Note that the RAG model requires 15 GB of VRAM
+- You'll need to contact jiaxiong.guan65@myhunter.cuny.edu for API keys
+
+### 3. Start Backend API
+- Navigate to the Backend folder
+```cd backend```
+- Install requirements
+```pip install -r requirements.txt```
+- Download the xgb_model.json, its hosted on [Google Drive](https://drive.google.com/file/d/1C6SaAXGr3oq5lr4DgmosQfwSarQ1j-Qm/view?usp=sharing) due to github file constraints
+- Place xgb_model.json in backend folder
+- Run flask app
+```python app.py```
+
+### 4. Start Frontend
+- Navigate to the Frontend folder
+```cd frontend```
+- Install packages
+```npm install```
+- Start the app
+```npm start```
 
 
 
