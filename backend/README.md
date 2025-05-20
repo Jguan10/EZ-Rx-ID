@@ -8,30 +8,31 @@ This is the Flask-based backend for EZ-Rx-ID, a pill identification system that 
 
 - **Python 3.12 is required**  
   Download Python 3.12 here: https://www.python.org/downloads/release/python-3120/
+  To check your Python version, run:
 
-To check your Python version, run:
-
-python --version
-If needed, run commands explicitly with Python 3.12:
-
-C:\Python312\python.exe app.py
+  python --version
+  
+  If needed, run commands explicitly with Python 3.12:
+  
+  C:\Python312\python.exe app.py
 
 Setup Instructions
 - 1. Clone the repository
+  git clone https://github.com/Jguan10/EZ-Rx-ID.git
+  cd EZ-Rx-ID/backend
 
-git clone https://github.com/Jguan10/EZ-Rx-ID.git
-cd EZ-Rx-ID/backend
 - 2. Install dependencies
-Using Python 3.12:
+  Using Python 3.12:
 
-C:\Python312\python.exe -m pip install -r requirements.txt
+ C:\Python312\python.exe -m pip install -r requirements.txt
+
 - 3. Download xgb_model.json
-Due to GitHub’s 100MB file size limit, the XGBoost model file must be downloaded manually.
+  Due to GitHub’s 100MB file size limit, the XGBoost model file must be downloaded manually.
+  Download it from Google Drive:
 
-Download it from Google Drive:
-https://drive.google.com/file/d/1C6SaAXGr3oq5lr4DgmosQfwSarQ1j-Qm/view?usp=sharing
+  https://drive.google.com/file/d/1C6SaAXGr3oq5lr4DgmosQfwSarQ1j-Qm/view?usp=sharing
 
-Place it in the backend/ folder so that app.py can access it.
+  Place it in the backend/ folder so that app.py can access it.
 
 Running the Backend
 From the backend/ folder, run:
