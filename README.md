@@ -15,8 +15,8 @@ Gitbook contains more in-depth view of the project and more detailed explanation
 - 🤖 Computer Vision model identifying pills, trained on NIH image dataset
 - 🩺 Data pipeline built with LangChain, FAISS, and FlagEmbeddings for efficient retrieval and augmentation
 - 🧬 Supabase holding pill images for model training, along with metadata and indexes
-- 🧫 BioGPT as an LLM agent, called on when context is insufficient (WIP)
-- 🔬 XGBoost classification model boasting 92% precision and 88% accuracy
+- 🧫 Gemini judge model, evaluating generated responses for a recursive process
+- 💉 AI tool calling agent, gathering context from trusted sources if response is not valid
 
 ## How to Run 🚀
 ### 1. Setup
